@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Акватория ветра - Яхт-клуб</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Playfair+Display:wght@600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#0f1524",
+                        "background": "#0a0e1a",
+                        "on-tertiary-container": "#e8d0ff",
+                        "tertiary-fixed": "#e8d0ff",
+                        "surface-container-high": "#1a2438",
+                        "on-secondary-fixed-variant": "#2a4a5e",
+                        "surface-variant": "#1a2438",
+                        "on-primary": "#001f2e",
+                        "surface-container": "#141c2e",
+                        "on-secondary-container": "#c0d8e8",
+                        "primary": "#7dd3fc",
+                        "on-secondary-fixed": "#0d1f2b",
+                        "on-error-container": "#ffb3b3",
+                        "on-secondary": "#001f2e",
+                        "tertiary": "#c8a0f0",
+                        "surface-dim": "#0f1524",
+                        "outline-variant": "#2a3a48",
+                        "on-tertiary-fixed": "#1a002e",
+                        "inverse-surface": "#e0e8f0",
+                        "surface-bright": "#1a2438",
+                        "tertiary-container": "#3d2060",
+                        "surface-container-low": "#111828",
+                        "secondary-fixed-dim": "#88b4cc",
+                        "on-primary-fixed": "#001f2e",
+                        "error-container": "#3d1414",
+                        "on-surface": "#e0e8f0",
+                        "on-primary-fixed-variant": "#004d73",
+                        "primary-fixed": "#c8eaff",
+                        "secondary-container": "#1a3a4e",
+                        "surface-container-lowest": "#0a0e1a",
+                        "secondary": "#88b4cc",
+                        "surface-container-highest": "#202c42",
+                        "primary-container": "#0e4d6e",
+                        "tertiary-fixed-dim": "#c8a0f0",
+                        "on-tertiary": "#1a002e",
+                        "inverse-on-surface": "#0a0e1a",
+                        "on-surface-variant": "#a0b4c4",
+                        "secondary-fixed": "#c0d8e8",
+                        "outline": "#4a6070",
+                        "primary-fixed-dim": "#7dd3fc",
+                        "surface-tint": "#7dd3fc",
+                        "inverse-primary": "#0a4c6e",
+                        "on-primary-container": "#c8eaff",
+                        "on-tertiary-fixed-variant": "#4d2a73",
+                        "on-error": "#1a0000",
+                        "on-background": "#e0e8f0",
+                        "error": "#ff6b6b",
+                        "accent-gold": "#E8A860" // Added sunset accent
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Playfair Display", "serif"],
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(15, 21, 36, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(125, 211, 252, 0.1);
+        }
+        .glass-elevated {
+            background: rgba(15, 21, 36, 0.75);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(125, 211, 252, 0.15);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 30px rgba(125, 211, 252, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Specific editorial stylings */
+        .clip-slant {
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen overflow-x-hidden selection:bg-primary/30 selection:text-primary-fixed">
+<!-- TopNavBar Component from JSON -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-4 bg-background/60 backdrop-blur-xl border-b border-primary/10 shadow-[0_0_30px_rgba(125,211,252,0.05)]">
+<div class="text-2xl font-display font-bold tracking-tighter text-on-surface">
+            Акватория ветра
+        </div>
+<!-- Web Nav -->
+<div class="hidden md:flex gap-8">
+<a class="font-display font-semibold tracking-tight text-on-surface-variant hover:text-on-surface transition-colors hover:bg-primary/10 px-3 py-1 rounded-md duration-300" href="#services">Услуги</a>
+<a class="font-display font-semibold tracking-tight text-on-surface-variant hover:text-on-surface transition-colors hover:bg-primary/10 px-3 py-1 rounded-md duration-300" href="#fleet">Флот</a>
+<a class="font-display font-semibold tracking-tight text-on-surface-variant hover:text-on-surface transition-colors hover:bg-primary/10 px-3 py-1 rounded-md duration-300" href="#training">Обучение</a>
+<a class="font-display font-semibold tracking-tight text-on-surface-variant hover:text-on-surface transition-colors hover:bg-primary/10 px-3 py-1 rounded-md duration-300" href="#team">Команда</a>
+<a class="font-display font-semibold tracking-tight text-on-surface-variant hover:text-on-surface transition-colors hover:bg-primary/10 px-3 py-1 rounded-md duration-300" href="#contacts">Контакты</a>
+</div>
+<button class="hidden md:block px-6 py-2 rounded-full border border-primary/50 text-primary hover:bg-primary/10 font-display font-semibold tracking-tight scale-95 active:scale-90 transition-transform duration-300">
+            Забронировать
+        </button>
+<!-- Mobile Menu Icon (Placeholder) -->
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+<!-- Asymmetric Background Element -->
+<div class="absolute top-0 right-0 w-3/4 h-full clip-slant z-0">
+<div class="absolute inset-0 bg-cover bg-center opacity-80 mix-blend-luminosity" data-alt="A breathtaking sunset over the Volga river, captured from the deck of a luxury sailing yacht. The sky is painted in rich hues of deep navy and vibrant gold (#0A1420 to #E8A860). The sleek lines of the yacht's hull slice through calm, dark waters, conveying premium leisure and serene power in a dark editorial photography style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDE8BsfCG291-Xx9wxxQDQsZwrg0QLu2JUshECtdy39mmQV94Bd9tL0Ssx2UlwhGIEpEKULDOGIhi8AImB-gO78j1zojbHY-2dSQLbSKHC3C-R1VaunHkBOGJ7WsVKKaw8GGwBxHQM6CDfFKZmC7tCLEtz8FGBeF93OiUmuLGwRObiM4lHeDuViMAbp34GBi_EHd6OobW1jR_4vaF7u7Nz2CXNeTBZAl57trSmlxuizPL7Fhe37xqo2fyncNzgjrZsPubkdM3abUaw')"></div>
+<!-- Gradient Overlay for depth -->
+<div class="absolute inset-0 bg-gradient-to-l from-transparent to-background"></div>
+</div>
+<div class="container mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-12 items-center">
+<div class="flex flex-col items-start gap-8 max-w-2xl">
+<h1 class="font-headline text-5xl md:text-7xl font-bold leading-tight text-on-surface drop-shadow-lg">
+                        Отдых под парусом на <span class="text-accent-gold italic">Волге</span>
+</h1>
+<p class="text-xl md:text-2xl text-on-surface-variant font-light max-w-lg leading-relaxed">
+                        Прогулки, обучение яхтингу и праздники на воде в Саратове.
+                    </p>
+<button class="mt-4 px-8 py-4 rounded-full bg-accent-gold/90 hover:bg-accent-gold text-[#0A1420] font-bold text-lg transition-all duration-300 shadow-[0_0_20px_rgba(232,168,96,0.3)] hover:shadow-[0_0_30px_rgba(232,168,96,0.5)] transform hover:-translate-y-1">
+                        Забронировать выход
+                    </button>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-on-surface-variant opacity-50">
+<span class="material-symbols-outlined text-3xl">south</span>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-24 relative" id="services">
+<div class="container mx-auto px-6">
+<h2 class="font-headline text-4xl md:text-5xl font-bold mb-16 text-center text-on-surface">Направления</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
+<!-- Featured 1 -->
+<div class="md:col-span-2 glass-panel rounded-2xl p-8 flex flex-col justify-end relative overflow-hidden group glow-hover transition-all duration-500">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 group-hover:opacity-60 transition-opacity duration-500 mix-blend-overlay" data-alt="A close up shot of a sleek yacht steering wheel with a blurred background showing expansive, dark blue river waters under a dramatic sunset. Premium, moody, and atmospheric, evoking the thrill and luxury of sailing." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCkhI43M4m4jKqm-vZ-aGNpgHRfVunOYuxN0RUp4Dk8T3aylqhs-bNKNCrX9XIrkUhDfg8HpfASIpgIQLLzRvHGM44Ne52QjZGS02zk0GSWF_g2bnwRq8RBqIwdLWpr_bXc_K-LXZZtvVCniRIvb34ongvFGuAGb8yoK0R7h5dnGVwa7RMp_rCXxuO2dXL0PLQltAQJd7n1T2WuC5TnO3lppaDcjZaBSqsY1DpPnopeMBH7BXWXYNq8eb-jtMZr9THRdshJ43rvmm0')"></div>
+<div class="relative z-10">
+<h3 class="text-3xl font-headline font-bold text-on-surface mb-2">Прогулки на яхтах</h3>
+<p class="text-on-surface-variant text-lg w-2/3">Идеальный способ отвлечься от городской суеты.</p>
+</div>
+</div>
+<!-- Featured 2 -->
+<div class="glass-panel rounded-2xl p-8 flex flex-col justify-end relative overflow-hidden group glow-hover transition-all duration-500">
+<div class="absolute inset-0 bg-gradient-to-br from-surface to-background opacity-90"></div>
+<span class="material-symbols-outlined absolute top-8 right-8 text-6xl text-primary/20">school</span>
+<div class="relative z-10">
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-2">Обучение яхтингу</h3>
+<p class="text-on-surface-variant">Школа капитанов.</p>
+</div>
+</div>
+<!-- Secondary Grid -->
+<div class="glass-panel rounded-2xl p-6 flex flex-col justify-center items-center text-center group hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined text-4xl text-tertiary mb-4">groups</span>
+<h4 class="text-xl font-display font-semibold text-on-surface">Корпоративы</h4>
+</div>
+<div class="glass-panel rounded-2xl p-6 flex flex-col justify-center items-center text-center group hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined text-4xl text-accent-gold mb-4">favorite</span>
+<h4 class="text-xl font-display font-semibold text-on-surface">Лавстори</h4>
+</div>
+<div class="glass-panel rounded-2xl p-6 flex flex-col justify-center items-center text-center group hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined text-4xl text-primary mb-4">photo_camera</span>
+<h4 class="text-xl font-display font-semibold text-on-surface">Фотосессии</h4>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component from JSON -->
+<footer class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col gap-2 text-center md:text-left">
+<div class="text-xl font-display font-bold text-on-surface">
+                Акватория ветра
+            </div>
+<p class="font-body text-sm text-on-surface-variant">
+                © 2024 Акватория ветра. Все права защищены. Саратов | Пенза
+            </p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Политика конфиденциальности</a>
+<a class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Публичная оферта</a>
+<a class="font-body text-sm text-on-surface-variant hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Правила клуба</a>
+</div>
+</footer>
+</body></html>

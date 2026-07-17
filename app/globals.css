@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Светлая палитра v2 — дневной морской премиум (по правке клиента).
+     Морская дымка вместо ночной воды, графит вместо белого текста */
+  --color-bg: #f4f7fa;
+  --color-bg-2: #e9f0f5;
+  --color-elev: #ffffff;
+  --color-water: #cfe3ed;
+
+  /* Амбер затемнён для светлого фона — только крупные serif-акценты и цифры */
+  --color-amber: #c77e33;
+  --color-amber-soft: #b06f28;
+
+  /* Морской акцент — CTA, ссылки, интерактив (контраст на белом ~7:1) */
+  --color-cta: #1e6b7a;
+  --color-cta-hover: #175763;
+
+  --color-ink: #1a2a38;
+  --color-sub: #5a6b78;
+  --color-mut: #8a98a4;
+
+  --color-line: rgba(26, 42, 56, 0.1);
+
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-manrope);
+
+  /* Мягкие холодные тени: карточки «парят», а не «вдавлены» */
+  --shadow-long: 0 20px 40px rgba(30, 70, 90, 0.1);
+  --shadow-glow: 0 8px 28px rgba(30, 107, 122, 0.28);
+
+  --ease-out-soft: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(30, 107, 122, 0.18);
+  color: var(--color-ink);
+}
+
+/* Caption / label — uppercase с широким трекингом */
+.caption {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-mut);
+}
+
+/* Подчёркивание ссылок, растущее снизу */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 0;
+  background: var(--color-cta);
+  transition: width 0.25s var(--ease-out-soft);
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Дневная цветокоррекция: фото клиента дневные, фильтр лишь выравнивает тон */
+.grade-warm {
+  filter: saturate(0.92) contrast(1.04) brightness(1.02) sepia(0.05);
+}
+.grade-mist {
+  filter: saturate(0.65) contrast(1.0) brightness(1.05) sepia(0.08);
 }
