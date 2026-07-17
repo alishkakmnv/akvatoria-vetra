@@ -38,10 +38,10 @@ export function Services() {
                 <h3 className="font-display text-xl leading-snug text-ink md:text-2xl">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm font-semibold text-cta">
+                <p className="mt-2 text-base font-semibold text-cta-text">
                   {item.price}
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-sub">
+                <p className="mt-4 text-base leading-relaxed text-sub">
                   {item.text}
                 </p>
               </article>
@@ -102,7 +102,7 @@ function ServiceFeatured({
           <h3 className="font-display text-2xl text-ink md:text-3xl">
             {title}
           </h3>
-          <p className="font-semibold text-cta">{price}</p>
+          <p className="text-lg font-semibold text-cta-text">{price}</p>
         </div>
         <p className="mt-3 max-w-md leading-relaxed text-sub">{text}</p>
       </div>

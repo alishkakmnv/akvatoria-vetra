@@ -1,33 +1,105 @@
 @import "tailwindcss";
 
-@theme {
-  /* Светлая палитра v2 — дневной морской премиум (по правке клиента).
-     Морская дымка вместо ночной воды, графит вместо белого текста */
-  --color-bg: #f4f7fa;
-  --color-bg-2: #e9f0f5;
-  --color-elev: #ffffff;
-  --color-water: #cfe3ed;
+/* Обе палитры живут одновременно: переключение через data-theme на <html>.
+   Утилиты Tailwind собираются через @theme inline → var(--t-*) резолвится
+   в рантайме по активной теме. */
 
-  /* Амбер затемнён для светлого фона — только крупные serif-акценты и цифры */
-  --color-amber: #c77e33;
-  --color-amber-soft: #b06f28;
+:root,
+:root[data-theme="light"] {
+  /* Светлая v2 — дневной морской премиум (текущая версия для клиента).
+     Значения откалиброваны по WCAG AA на фоне #F4F7FA/#FFFFFF */
+  --t-bg: #f4f7fa;
+  --t-bg-2: #e9f0f5;
+  --t-elev: #ffffff;
+  --t-water: #cfe3ed;
 
-  /* Морской акцент — CTA, ссылки, интерактив (контраст на белом ~7:1) */
-  --color-cta: #1e6b7a;
-  --color-cta-hover: #175763;
+  /* Амбер — только крупные serif-акценты и цифры (large-text AA ≥3:1) */
+  --t-amber: #b9752f;
+  --t-amber-soft: #a5661f;
 
-  --color-ink: #1a2a38;
-  --color-sub: #5a6b78;
-  --color-mut: #8a98a4;
+  /* Морской акцент — CTA, ссылки, интерактив (~7:1 на белом).
+     cta-text — тот же цвет для текстовых акцентов (в тёмной теме светлее) */
+  --t-cta: #1e6b7a;
+  --t-cta-hover: #175763;
+  --t-cta-text: #1e6b7a;
 
-  --color-line: rgba(26, 42, 56, 0.1);
+  --t-ink: #1a2a38;
+  --t-sub: #52626f; /* 5.2:1 на дымке — мелкий текст проходит AA */
+  --t-mut: #5f6e7a; /* 4.6:1 — подписи читаются, а не «плывут» */
+
+  --t-line: rgba(26, 42, 56, 0.1);
+  --t-error: #b3453a;
+  --t-input-border: rgba(26, 42, 56, 0.18);
+  --t-focus-ring: rgba(30, 107, 122, 0.15);
+
+  --t-shadow-long: 0 20px 40px rgba(30, 70, 90, 0.1);
+  --t-shadow-glow: 0 8px 28px rgba(30, 107, 122, 0.28);
+
+  --t-hero-title-shadow: 0 2px 24px rgba(244, 247, 250, 0.8);
+  --t-sail-glow: rgba(255, 255, 255, 0.7);
+  --t-selection: rgba(30, 107, 122, 0.18);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  /* Тёмная v1 — закатная вода (второй вариант для клиента, DESIGN.md) */
+  --t-bg: #0a1420;
+  --t-bg-2: #0f1e2e;
+  --t-elev: #152838;
+  --t-water: #1a3548;
+
+  --t-amber: #e8a860;
+  --t-amber-soft: #c99155;
+
+  /* CTA остаётся морским, но светлее — белый текст держит ~4.6:1.
+     Текстовые акценты ещё светлее: ≥6:1 на карточках */
+  --t-cta: #23808f;
+  --t-cta-hover: #2b95a6;
+  --t-cta-text: #4fb3c5;
+
+  --t-ink: #f4f0ea;
+  --t-sub: #a8b4c0;
+  --t-mut: #8a97a3;
+
+  --t-line: rgba(168, 180, 192, 0.12);
+  --t-error: #e8938a;
+  --t-input-border: rgba(168, 180, 192, 0.2);
+  --t-focus-ring: rgba(43, 149, 166, 0.2);
+
+  --t-shadow-long: 0 24px 48px rgba(0, 0, 0, 0.4);
+  --t-shadow-glow: 0 8px 32px rgba(43, 149, 166, 0.3);
+
+  --t-hero-title-shadow: 0 4px 40px rgba(10, 20, 32, 0.7);
+  --t-sail-glow: rgba(232, 168, 96, 0.55);
+  --t-selection: rgba(232, 168, 96, 0.3);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--t-bg);
+  --color-bg-2: var(--t-bg-2);
+  --color-elev: var(--t-elev);
+  --color-water: var(--t-water);
+
+  --color-amber: var(--t-amber);
+  --color-amber-soft: var(--t-amber-soft);
+
+  --color-cta: var(--t-cta);
+  --color-cta-hover: var(--t-cta-hover);
+  --color-cta-text: var(--t-cta-text);
+
+  --color-ink: var(--t-ink);
+  --color-sub: var(--t-sub);
+  --color-mut: var(--t-mut);
+
+  --color-line: var(--t-line);
+  --color-error: var(--t-error);
 
   --font-display: var(--font-playfair);
   --font-sans: var(--font-manrope);
 
-  /* Мягкие холодные тени: карточки «парят», а не «вдавлены» */
-  --shadow-long: 0 20px 40px rgba(30, 70, 90, 0.1);
-  --shadow-glow: 0 8px 28px rgba(30, 107, 122, 0.28);
+  --shadow-long: var(--t-shadow-long);
+  --shadow-glow: var(--t-shadow-glow);
 
   --ease-out-soft: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -50,13 +122,13 @@ body {
 }
 
 ::selection {
-  background: rgba(30, 107, 122, 0.18);
+  background: var(--t-selection);
   color: var(--color-ink);
 }
 
-/* Caption / label — uppercase с широким трекингом */
+/* Caption / label — uppercase с широким трекингом (мин. 14px по аудиту) */
 .caption {
-  font-size: 13px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-mut);
@@ -86,4 +158,14 @@ body {
 }
 .grade-mist {
   filter: saturate(0.65) contrast(1.0) brightness(1.05) sepia(0.08);
+}
+
+/* В тёмной теме фото затемняются и теплеют под закатную палитру v1 */
+:root[data-theme="dark"] .grade-warm {
+  filter: saturate(0.5) contrast(1.1) brightness(0.78) sepia(0.32)
+    hue-rotate(-10deg);
+}
+:root[data-theme="dark"] .grade-mist {
+  filter: saturate(0.3) contrast(1.05) brightness(0.75) sepia(0.35)
+    hue-rotate(-12deg);
 }

@@ -1,4 +1,5 @@
 import { nav, site } from "@/lib/site";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Footer() {
   return (
@@ -27,7 +28,7 @@ export function Footer() {
           <div className="flex flex-col gap-3 text-sm">
             <a
               href={site.phoneHref}
-              className="font-medium text-ink transition-colors hover:text-cta"
+              className="font-medium text-ink transition-colors hover:text-cta-text"
             >
               {site.phone}
             </a>
@@ -50,9 +51,12 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-12 border-t border-line pt-6 text-xs text-mut">
-          © {new Date().getFullYear()} Акватория ветра · {site.address}
-        </p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-mut">
+            © {new Date().getFullYear()} Акватория ветра · {site.address}
+          </p>
+          <ThemeToggle />
+        </div>
       </div>
     </footer>
   );

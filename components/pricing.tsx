@@ -30,7 +30,7 @@ export function Pricing() {
                 <p className="mt-1 text-sm text-mut">{tier.unit}</p>
                 <ul className="mt-7 flex-1 space-y-3 border-t border-line pt-6">
                   {tier.features.map((f) => (
-                    <li key={f} className="text-sm leading-relaxed text-sub">
+                    <li key={f} className="text-base leading-relaxed text-sub">
                       {f}
                     </li>
                   ))}

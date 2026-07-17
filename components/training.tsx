@@ -38,7 +38,7 @@ export function Training() {
                   {p}
                 </p>
               ))}
-              <p className="mt-6 font-semibold text-cta">
+              <p className="mt-6 font-semibold text-cta-text">
                 {training.priceLine}
               </p>
             </Reveal>

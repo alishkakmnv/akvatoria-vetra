@@ -145,17 +145,12 @@ export function Booking() {
                     </select>
                   </Field>
                   <Field label="Дата выхода">
-                    <input
-                      name="date"
-                      type="date"
-                      min={today}
-                      className="input [color-scheme:light]"
-                    />
+                    <input name="date" type="date" min={today} className="input" />
                   </Field>
                 </div>
 
                 {status === "error" && (
-                  <p role="alert" className="mt-5 text-sm text-[#b3453a]">
+                  <p role="alert" className="mt-5 text-sm font-medium text-error">
                     Не получилось отправить. Позвоните нам напрямую:{" "}
                     <a href={site.phoneHref} className="underline">
                       {site.phone}
@@ -170,7 +165,7 @@ export function Booking() {
                 >
                   {status === "loading" ? "Отправляем…" : "Забронировать выход"}
                 </button>
-                <p className="mt-4 text-center text-xs text-mut">
+                <p className="mt-4 text-center text-sm text-mut">
                   Без предоплаты: бронь подтверждает шкипер по телефону
                 </p>
               </form>
@@ -184,7 +179,7 @@ export function Booking() {
         .input {
           width: 100%;
           border-radius: 8px;
-          border: 1px solid rgba(26, 42, 56, 0.18);
+          border: 1px solid var(--t-input-border);
           background: var(--color-bg);
           padding: 0.875rem 1rem;
           color: var(--color-ink);
@@ -194,9 +189,11 @@ export function Booking() {
         .input:focus {
           outline: none;
           border-color: var(--color-cta);
-          box-shadow: 0 0 0 3px rgba(30, 107, 122, 0.15);
+          box-shadow: 0 0 0 3px var(--t-focus-ring);
         }
-        .input[aria-invalid="true"] { border-color: rgba(179, 69, 58, 0.6); }
+        .input[aria-invalid="true"] {
+          border-color: color-mix(in srgb, var(--t-error) 60%, transparent);
+        }
       `}</style>
     </section>
   );
@@ -215,7 +212,7 @@ function Field({
     <label className="block">
       <span className="caption mb-2 block">{label}</span>
       {children}
-      {error && <span className="mt-2 block text-xs text-[#e8938a]">{error}</span>}
+      {error && <span className="mt-2 block text-sm text-error">{error}</span>}
     </label>
   );
 }

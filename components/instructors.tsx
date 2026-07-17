@@ -36,10 +36,10 @@ export function Instructors() {
                 </div>
                 <div className="p-7">
                   <h3 className="font-display text-xl text-ink">{s.name}</h3>
-                  <p className="mt-1 text-sm font-medium text-cta">
+                  <p className="mt-1 text-base font-semibold text-cta-text">
                     {s.experience}
                   </p>
-                  <p className="mt-4 text-sm leading-relaxed text-sub">
+                  <p className="mt-4 text-base leading-relaxed text-sub">
                     {s.line}
                   </p>
                 </div>

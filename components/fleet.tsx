@@ -46,7 +46,7 @@ export function Fleet() {
                   <h3 className="font-display text-2xl text-ink">
                     {boat.name}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-sub">
+                  <p className="mt-2 text-base leading-relaxed text-sub">
                     {boat.note}
                   </p>
 

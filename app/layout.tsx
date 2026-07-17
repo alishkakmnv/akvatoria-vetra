@@ -41,6 +41,12 @@ export default function RootLayout({
       className={`${playfair.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Тема до первой отрисовки — без вспышки светлого при тёмной теме */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("akvatoria-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}`,
+          }}
+        />
         <TrafficCapture />
         {children}
       </body>

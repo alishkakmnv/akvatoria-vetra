@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useReducedMotion } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 const vertexShader = /* glsl */ `
@@ -46,18 +46,49 @@ const fragmentShader = /* glsl */ `
   }
 `;
 
-function WaterPlane({ still }: { still: boolean }) {
+/* Палитры воды по темам: дневная бирюза / закатная глубина */
+const WATER_COLORS = {
+  light: { deep: "#c3dbe8", shallow: "#8ec4d6", glint: "#ffffff" },
+  dark: { deep: "#0a1420", shallow: "#1a3548", glint: "#e8a860" },
+};
+
+function useTheme(): keyof typeof WATER_COLORS {
+  const [theme, setTheme] = useState<keyof typeof WATER_COLORS>("light");
+  useEffect(() => {
+    const read = () =>
+      setTheme(
+        document.documentElement.dataset.theme === "dark" ? "dark" : "light"
+      );
+    read();
+    const mo = new MutationObserver(read);
+    mo.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+    return () => mo.disconnect();
+  }, []);
+  return theme;
+}
+
+function WaterPlane({ still, theme }: { still: boolean; theme: keyof typeof WATER_COLORS }) {
   const mat = useRef<THREE.ShaderMaterial>(null);
 
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uDeep: { value: new THREE.Color("#c3dbe8") },
-      uShallow: { value: new THREE.Color("#8ec4d6") },
-      uGlint: { value: new THREE.Color("#ffffff") },
+      uDeep: { value: new THREE.Color(WATER_COLORS.light.deep) },
+      uShallow: { value: new THREE.Color(WATER_COLORS.light.shallow) },
+      uGlint: { value: new THREE.Color(WATER_COLORS.light.glint) },
     }),
     []
   );
+
+  useEffect(() => {
+    const c = WATER_COLORS[theme];
+    uniforms.uDeep.value.set(c.deep);
+    uniforms.uShallow.value.set(c.shallow);
+    uniforms.uGlint.value.set(c.glint);
+  }, [theme, uniforms]);
 
   useFrame((_, delta) => {
     if (!still && mat.current) mat.current.uniforms.uTime.value += delta;
@@ -78,9 +109,11 @@ function WaterPlane({ still }: { still: boolean }) {
   );
 }
 
-/** Фоновая вода героя: тихая рябь Three.js, статична при prefers-reduced-motion */
+/** Фоновая вода героя: тихая рябь Three.js, статична при prefers-reduced-motion,
+    палитра следует за data-theme */
 export function Water() {
   const reduce = useReducedMotion() ?? false;
+  const theme = useTheme();
   return (
     <Canvas
       className="pointer-events-none"
@@ -89,7 +122,7 @@ export function Water() {
       gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
       frameloop={reduce ? "demand" : "always"}
     >
-      <WaterPlane still={reduce} />
+      <WaterPlane still={reduce} theme={theme} />
     </Canvas>
   );
 }

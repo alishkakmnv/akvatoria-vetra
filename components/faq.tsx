@@ -23,11 +23,11 @@ export function Faq() {
             {faq.items.map((item, i) => (
               <Reveal key={item.q} delay={0.04 * i}>
                 <details className="group border-b border-line py-2 open:pb-6">
-                  <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 py-4 text-lg font-medium text-ink transition-colors hover:text-cta [&::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 py-4 text-lg font-medium text-ink transition-colors hover:text-cta-text [&::-webkit-details-marker]:hidden">
                     {item.q}
                     <span
                       aria-hidden
-                      className="shrink-0 font-display text-2xl leading-none text-cta transition-transform duration-300 group-open:rotate-45"
+                      className="shrink-0 font-display text-2xl leading-none text-cta-text transition-transform duration-300 group-open:rotate-45"
                     >
                       +
                     </span>

@@ -70,8 +70,8 @@ export function Hero() {
           sizes="70vw"
           className="grade-warm object-cover object-[55%_top]"
         />
-        {/* Солнечный отсвет на парусе */}
-        <div className="absolute inset-0 mix-blend-soft-light [background:radial-gradient(ellipse_at_78%_18%,rgba(255,255,255,0.7),transparent_62%)]" />
+        {/* Отсвет на парусе: солнечный днём, янтарный в тёмной версии */}
+        <div className="absolute inset-0 mix-blend-soft-light [background:radial-gradient(ellipse_at_78%_18%,var(--t-sail-glow),transparent_62%)]" />
         {/* Растворение диагонали в фон и тёмный низ для читаемости */}
         <div className="absolute inset-0 bg-gradient-to-r from-bg via-bg/35 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-bg/40" />
@@ -98,7 +98,7 @@ export function Hero() {
             variants={intro}
             initial={reduce ? false : "hidden"}
             animate="show"
-            className="font-display text-[clamp(3rem,7.5vw,5.75rem)] font-medium leading-[1.05] tracking-tight text-ink [text-shadow:0_2px_24px_rgba(244,247,250,0.8)]"
+            className="font-display text-[clamp(3rem,7.5vw,5.75rem)] font-medium leading-[1.05] tracking-tight text-ink [text-shadow:var(--t-hero-title-shadow)]"
           >
             Отдых под
             <br />
@@ -111,7 +111,7 @@ export function Hero() {
             variants={intro}
             initial={reduce ? false : "hidden"}
             animate="show"
-            className="mt-7 max-w-lg text-lg leading-relaxed text-sub md:text-xl"
+            className="mt-7 max-w-lg text-lg font-medium leading-relaxed text-ink md:text-xl"
           >
             {heroContent.offer}
           </motion.p>
